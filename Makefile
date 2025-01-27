@@ -27,7 +27,7 @@ GLOSSARY      := Verzeichnisse/Glossar.tex                                     #
 
 NAME          := Arbeit
 BUILD_DIR     := .build
-ARGS_PDFLATEX := -output-directory=$(BUILD_DIR)
+ARGS_PDFLATEX := -output-directory=$(BUILD_DIR) -shell-escape 
 
 # Generate build directory (including child directories) if non-existant
 $(BUILD_DIR):
