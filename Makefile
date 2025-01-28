@@ -27,7 +27,7 @@ GLOSSARY      := Verzeichnisse/Glossar.tex                                     #
 
 NAME          := Arbeit
 BUILD_DIR     := .build
-ARGS_PDFLATEX := -output-directory=$(BUILD_DIR) -shell-escape 
+ARGS_PDFLATEX := -output-directory=$(BUILD_DIR)
 
 # Generate build directory (including child directories) if non-existant
 $(BUILD_DIR):
@@ -39,24 +39,12 @@ else
 	done
 endif
 
-# Generate glossary entries file
-$(BUILD_DIR)/$(NAME).glo: $(BUILD_DIR) $(GLOSSARY)
-	pdflatex $(ARGS_PDFLATEX) $(NAME)
-	-cd $(BUILD_DIR) && makeglossaries $(NAME)
-
-# Generate index file
-$(BUILD_DIR)/$(NAME).nls: $(BUILD_DIR) $(INDICES) $(SOURCES)
-	-cd $(BUILD_DIR) && makeindex $(NAME).nlo -s nomencl.ist -o $(NAME).nls
-
-# Generate bibliography index file
-$(BUILD_DIR)/$(NAME).bbl: $(BUILD_DIR) $(BIBLIOGRAPHY)
+$(NAME).pdf: $(BUILD_DIR) $(SOURCES)
 	pdflatex $(ARGS_PDFLATEX) $(NAME)
 	$(COPY_COMMAND) $(BIBLIOGRAPHY) $(BUILD_DIR)$(SEP)$(BIBLIOGRAPHY)
 	-cd $(BUILD_DIR) && bibtex $(NAME)
-
-# Compile document & link images / create list of figures etc.
-.PHONY: recompile_latex
-recompile_latex: $(BUILD_DIR) $(SOURCES)
+	-cd $(BUILD_DIR) && makeglossaries $(NAME)
+	-cd $(BUILD_DIR) && makeindex $(NAME).nlo -s nomencl.ist -o $(NAME).nls
 	pdflatex $(ARGS_PDFLATEX) $(NAME)
 	pdflatex $(ARGS_PDFLATEX) $(NAME)
 	@$(MOVE_COMMAND) $(BUILD_DIR)$(SEP)$(NAME).pdf .
@@ -66,7 +54,7 @@ clean:
 	$(RM_COMMAND) $(BUILD_DIR)
 
 .PHONY: all
-all: $(BUILD_DIR)/$(NAME).glo $(BUILD_DIR)/$(NAME).nls $(BUILD_DIR)/$(NAME).bbl recompile_latex
+all: $(NAME).pdf
 
 .PHONY: full
 full: all clean
