@@ -1,6 +1,6 @@
 \def\fileversion{1.0}
-\def\filedate{2025/01/26}
-\def\docdate {2025/01/26}
+\def\filedate{2025/01/28}
+\def\docdate {2025/01/28}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{feif}[\filedate \space FEIF Document Class v\fileversion]
 
@@ -42,7 +42,7 @@
 \RequirePackage[figure,table,lstlisting,xspace]{totalcount}
 \RequirePackage{siunitx}
 \RequirePackage[toc, nogroupskip, nonumberlist, nopostdot, acronyms, shortcuts, translate=babel]{glossaries}
-\RequirePackage[inkscapepath=./.build/svg-inkscape]{svg}
+\RequirePackage{graphicx}
 \RequirePackage{tabularray}
 \UseTblrLibrary{booktabs}
 
@@ -264,10 +264,10 @@
           {
             \centering
             \ifgerman{
-              \includesvg[width=.8\textwidth]{framework/logo_hscoburg_de_rot}%
+              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_de_rot.pdf}%
             }
             {
-              \includesvg[width=.8\textwidth]{framework/logo_hscoburg_en_rot}%
+              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_en_rot.pdf}%
             }
             
             \begin{Large}
@@ -335,10 +335,10 @@
           {
             \centering
             \ifgerman{
-              \includesvg[width=.8\textwidth]{framework/logo_hscoburg_de_rot}%
+              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_de_rot.pdfpages}%
             }
             {
-              \includesvg[width=.8\textwidth]{framework/logo_hscoburg_en_rot}%
+              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_en_rot.pdf}%
             }
 
             \begin{Large}
@@ -393,7 +393,7 @@
         \put(75,622){\large \FEIFMatriculationNumber}
         \put(75,81.5){\large \FEIFAuthorCity, den \today}
     }
-  ]{framework/_declaration_of_honor.pdf}
+  ]{framework/declaration_of_honor.pdf}
 }
 
 \newtoggle{anySymbols}
@@ -513,6 +513,7 @@
   }  
 }
 
+% Abstracts
 \renewenvironment{abstract}
 {  
   \markboth{\abstractname}{\abstractname}
@@ -525,6 +526,7 @@
 {  
 }
 
+% Acknowledgements
 \newenvironment{acknowledgement}
 {  
   \markboth{\acknowledgementname}{\acknowledgementname}
@@ -536,7 +538,4 @@
 }
 {  
 }
-
-
-
 \endinput
