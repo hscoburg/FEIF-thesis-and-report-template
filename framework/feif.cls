@@ -46,6 +46,11 @@
 \RequirePackage{tabularray}
 \UseTblrLibrary{booktabs}
 
+% Set the graphics path relative to the .cls file
+\makeatletter
+\def\input@path{{./}}
+\makeatother
+
 \newcommand{\ifgerman}[2]{\ifthenelse{\equal{\lang}{ngerman}}{#1}{#2}}
 
 \AtBeginDocument{\ifgerman{\selectlanguage{ngerman}}{\selectlanguage{english}}}
@@ -264,10 +269,10 @@
           {
             \centering
             \ifgerman{
-              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_de_rot.pdf}%
+              \includegraphics[width=.8\textwidth]{logo_hscoburg_de_rot.pdf}%
             }
             {
-              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_en_rot.pdf}%
+              \includegraphics[width=.8\textwidth]{logo_hscoburg_en_rot.pdf}%
             }
             
             \begin{Large}
@@ -335,10 +340,10 @@
           {
             \centering
             \ifgerman{
-              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_de_rot.pdfpages}%
+              \includegraphics[width=.8\textwidth]{logo_hscoburg_de_rot.pdfpages}%
             }
             {
-              \includegraphics[width=.8\textwidth]{framework/logo_hscoburg_en_rot.pdf}%
+              \includegraphics[width=.8\textwidth]{logo_hscoburg_en_rot.pdf}%
             }
 
             \begin{Large}
@@ -355,7 +360,7 @@
             \Large{\ifgerman{Studiengang: }{Degree program: }\FEIFStudyProgram}
             \vspace{1.5cm}
 
-            \Large{\ThesisType}
+            \Large{\FEIFThesisType}
             \vspace{1cm}
 
             \Huge{\FEIFTitle}
@@ -393,7 +398,7 @@
         \put(75,622){\large \FEIFMatriculationNumber}
         \put(75,81.5){\large \FEIFAuthorCity, den \today}
     }
-  ]{framework/declaration_of_honor.pdf}
+  ]{declaration_of_honor.pdf}
 }
 
 \newtoggle{anySymbols}
@@ -484,9 +489,7 @@
 
 % List of Acronyms
 \newcommand{\listofacronyms}
-{
-    % List of Acronyms
-    \clearpage
+{    
     \setglossarystyle{super}
     \printglossary[type=\acronymtype]
 }
@@ -494,7 +497,6 @@
 % Glossary
 \newcommand{\printfeifglossary}
 {
-    %\clearpage
     \setglossarystyle{altlist}
     \printglossary
 }
