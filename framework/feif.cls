@@ -369,7 +369,7 @@
           {
             \centering
             \ifgerman{
-              \includegraphics[width=.8\textwidth]{logo_hscoburg_de_rot.pdfpages}%
+              \includegraphics[width=.8\textwidth]{logo_hscoburg_de_rot.pdf}%
             }
             {
               \includegraphics[width=.8\textwidth]{logo_hscoburg_en_rot.pdf}%
