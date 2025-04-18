@@ -1,8 +1,8 @@
-\def\fileversion{1.0}
-\def\filedate{2025/01/28}
-\def\docdate {2025/01/28}
+\def\fileversion{1.0.1}
+\def\filedate{2025/04/18}
+\def\docdate {2025/04/18}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{feif}[\filedate \space FEIF Document Class v\fileversion]
+\ProvidesClass{framework/feif}[\filedate \space FEIF Document Class v\fileversion]
 
 \newcommand{\praxisbericht}{false}
 \DeclareOption{praxis}{\renewcommand{\praxisbericht}[0]{true}}
