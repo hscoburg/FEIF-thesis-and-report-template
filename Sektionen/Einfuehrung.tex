@@ -1,7 +1,8 @@
 \section{Einführung}
 \label{sec:einfuehrung}
 
-Bei diesem Dokument handelt es sich um eine \LaTeX{} Vorlage für wissenschaftliche Arbeiten in der \Acr{FEIF}. Es handelt sich hierbei nicht um eine Anleitung wie \LaTeX{} funktioniert, sondern rein um eine Vorlage die den formalen Richtlinien der \acr{FEIF} entspricht.
+Bei diesem Dokument handelt es sich um eine \LaTeX{} Vorlage für wissenschaftliche Arbeiten in der \acrfull{FEIF}.
+Es handelt sich hierbei nicht um eine Anleitung wie \LaTeX{} funktioniert, sondern rein um eine Vorlage die den formalen Richtlinien der \acrshort{FEIF} entspricht.
 
 \newpage
 \section{\LaTeX}
@@ -23,13 +24,13 @@ Zudem gibt es noch weitere Verzeichnisse, die automatisch eingelayoutet werden.
 
 Auch das Abbildungsverzeichnis wird automatisch erstellt. Hierzu muss eine Abbildung mit
 entsprechender Syntax eingebunden werden. In diesem Beispiel wurde in Abbildung
-\ref{fig: Lenna} das bekannte Standardtestbild für Bildbearbeitung "Lenna" eingebunden.
+\ref{fig:Lenna} das bekannte Standardtestbild für Bildbearbeitung "Lenna" eingebunden.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=.45\textwidth]{Lenna}
-  \caption{Standard-Testbild für Bildbearbeitung "Lenna"}
-  \label{fig: Lenna}
+  \includegraphics[width=.45\textwidth]{Bilder/Lenna}
+  \caption{Standard-Testbild für Bildbearbeitung ''Lenna''}
+  \label{fig:Lenna}
 \end{figure}
 
 Durch den "\textbackslash{}caption"-Befehl taucht die Grafik automatisch im Abbildungsverzeichnis auf.
@@ -52,7 +53,7 @@ Beispiel für eine Tabelle:
     \hline
   \end{tabular}
   \caption{Beispieltabelle}
-  \label{tab: Beispieltabelle}
+  \label{tab:Beispieltabelle}
 \end{table}
 
 Der "\textbackslash{}caption"-Befehl lässt die Tabelle wieder automatisch im Tabellenverzeichnis auftauchen.
@@ -128,12 +129,13 @@ In diesem Ordner sollten keine Dateien gelöscht oder verändert werden.}
 
 \subsubsection{Verwendung von Akronymen}
 
-Bitte für Akronyme ausschließlich die unteren Kommandos benutzen, da das Abkürzungsverzeichnis
-sonst nicht angezeigt wird.
+In einer früheren Version der Vorlage war es notwendig, spezielle Kommandos zu verwenden, um Akronyme zuverwenden.
+Diese Kommandos sind nicht mehr notwendig, da die Vorlage automatisch erkennt, wenn ein Akronym verwendet wird.
 
 \begin{itemize}
-  \item \textbackslash{}acr\{xyz\} für Kurzform des Akronyms
-  \item \textbackslash{}Acr\{xyz\} für die lange Form des Akronyms
+  \item \textbackslash{}acrshort\{EBA\} für Kurzform des Akronyms: \acrshort{EBA}
+  \item \textbackslash{}acrlong\{EBA\} für die lange Form des Akronyms: \acrlong{EBA}
+  \item \textbackslash{}acrfull\{EBA\} für die lange Form des Akronyms: \acrfull{EBA}
 \end{itemize}
 
 \subsubsection{Symbolverzeichnis}
@@ -163,21 +165,24 @@ Sobald TODOs im Dokument vorhanden sind, werden diese ebenfalls auf der letzten 
 
 \subsubsection{Tabellen mit Kopfzeile}
 
-Um Tabellen mit Kopfzeile einzufügen, kann die "\textbackslash{}colortable"-Umgebung genutzt werden.
+Um in Tabellen z.B. die Kopfzeile einzufärben, kann der Befehl "\textbackslash{}rowcolor" verwendet werden.
 
 \begin{table}[H]
   \centering
 
   % Custom tabular environment
-  \begin{colortable}{|c|c|c|}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor{gray!30}
     Spalte 1 & Spalte 2 & Spalte 3 \\
-    \tablecontent
+    \hline
     1.1 & 1.2 & 1.3 \\
     2.1 & 2.2 & 2.3 \\
-  \end{colortable}
+    \hline
+  \end{tabular}
 
   \caption{Custom Tabelle}
-  \label{tab: Tabelle 2}
+  \label{tab:Tabelle 2}
 \end{table}
 
 \subsubsection{Referenzen}
@@ -186,5 +191,5 @@ Um Referenzen auf Abbildungen syntaktisch zu verkürzen, stellt das Template
 ein eigenes Makro zur Verfügung: "\textbackslash{}imgref\{<LABEL>\}". Gleiches gilt
 für Tabellen ("\textbackslash{}tabref\{<LABEL>\}").
 
-Referenz auf Abbildung \ref{fig: Lenna}: \imgref{fig: Lenna}\\
-Referenz auf Tabelle \ref{tab: Tabelle 2}: \tabref{tab: Tabelle 2}
+Referenz auf Abbildung \ref{fig:Lenna}: \imgref{fig:Lenna}\\
+Referenz auf Tabelle \ref{tab:Tabelle 2}: \tabref{tab:Tabelle 2}

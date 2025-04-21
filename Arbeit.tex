@@ -1,30 +1,90 @@
-\documentclass[a4paper,12pt]{article}
-\input{framework/Setup}
+\makeatletter
+\def\input@path{{framework/}}
+\makeatother
+% -----------------------------------------------------------------------------
+% TODO: Select your document type.
+%       See the options in comments.
+% -----------------------------------------------------------------------------
+\documentclass[ngerman, praxis]{feif}           % For a German Internship Report ("Praxisbericht").
+%\documentclass[praxis]{feif}                   % For an English Internship Report.
+%\documentclass[ngerman]{feif}                  % For a German thesis (Bachelorarbeit, Masterarbeit, Seminararbeit, ...)
+%\documentclass[praxis]{feif}                   % For an English thesis (Bachelor Thesis, Master Thesis, Seminar Paper, ...)
 
-\def\Studiengang{<STUDIENGANG>}
-\def\Autorenname{<NAME AUTOR>}
-\def\Dozent{<DOZENT>}
-\def\Titel{Vorlage für verschiedene Dokumente der HS Coburg}
+% -----------------------------------------------------------------------------
+% TODO: Insert data of your document (thesis, paper, or intership report).
+% -----------------------------------------------------------------------------
+\def\FEIFTitle{Vorlage für FEIF Arbeiten}       % Title of your thesis or internship report.
+\def\FEIFAuthorsName{<NACHNAME, VORNAME>}       % Author's, i.e., student's, name.
+\def\FEIFDateOfBirth{<GEBURTSDATUM>}            % Date of birth. Use the German DD.MM.YYYY format.
+\def\FEIFMatriculationNumber{<MATRIKELNUMMER>}  % Your matriculation number ("Matrikelnummer).
+\def\FEIFStudyProgram{<STUDIENGANG>}            % The German version of your degree Program, e.g., "Visual Computing, B.Sc." or "Informatik, M.Sc." (without the quotes).
+\def\FEIFAuthorCity{<ORT>}                      % The place where you sign the "Declaration of Honor".
+\def\FEIFBeginDate{<BEGINN>}                    % Beginning of your thesis or start of your internship.
+\def\FEIFEndDate{<ENDE>}                        % Last day of your thesis or last day of your internship.
+\def\FEIFSubmissionDate{\today}                 % The submission date of your document.
 
-% Infos zum Unternehmen
-\def\Unternehmen{<FIRMENNAME>}
-\def\Abteilung{<ABTEILUNG>}
-\def\Strasse{<STRAßE>}
-\def\Ort{<ORT>}
+% -----------------------------------------------------------------------------
+% TODO: Data required for thesis and seminar papers (not for "Praxisbericht")
+% -----------------------------------------------------------------------------
+\def\FEIFInstructor{<DOZIERENDER>}              % Name of your FEIF instructor
 
-% Infos zum Betreuer
-\def\Betreuer{<BETREUER>}
-\def\Funktion{<FUNKTION BETREUER>}
-\def\Telefon{<TELEFONNUMMER BETREUER>}
-\def\Email{<BETREUER EMAIL>}
+% -----------------------------------------------------------------------------
+% TODO: Set thesis type in case you submit a thesis and seminar papers 
+%       (not for "Praxisbericht")
+% -----------------------------------------------------------------------------
+\def\FEIFThesisType{Seminararbeit}
+%\def\FEIFThesisType{Bachelorarbeit}
+%\def\FEIFThesisType{Masterarbeit}
+%\def\FEIFThesisType{Bachelor Thesis}
+%\def\FEIFThesisType{Master Thesis}
+%\def\FEIFThesisType{Seminar Paper}
 
-% Daten
-\def\Beginn{<BEGINN>}
-\def\Ende{<ENDE>}
-\def\Abgabe{\today}
+% -----------------------------------------------------------------------------
+% TODO: For internship reports "Praxisbericht"), set the data.
+% -----------------------------------------------------------------------------
+\def\FEIFCompany{<FIRMENNAME>}                  % Company Name (Internships only)
+\def\FEIFCompanyDepartment{<ABTEILUNG>}         % Department(s) inside the compmany you mostly worked for (Internships only)
+\def\FEIFCompanyStreetName{<STRASSE>}           % Street name of the mailing address of your company (Internships only)
+\def\FEIFCompanyCity{<ORT>}                     % City/Village/Town of the mailing address of your company (Internships only)
+\def\FEIFCompanyAdvisor{<BETREUENDE PERON>}     % The advisor at your comany (Internships only). Not the advisor at HS Coburg.
+\def\FEIFCompanyAdvisorRole{<FUNKTION>}         % The advisor's role of function (Internships only).
+\def\FEIFCompanyAdvisorPhone{<TEL.>}            % The advisor's phone number (Internships only).
+\def\FEIFCompanyAdvisorEMail{<E-MAIL>}          % The advisor's e-mail address (Internships only).
 
-\startHSCdocument[Praxisbericht]
+\newcommand{\IfExists}[2]{\IfFileExists{#1}{#2}{}}
+\newcommand{\InputIfExists}[1]{\IfFileExists{#1} {\input{#1}}{}}
 
-  \include{Sektionen/Einfuehrung}
+\makeglossaries
+\InputIfExists{./Verzeichnisse/Worttrennungen}
+\InputIfExists{./Verzeichnisse/Abkuerzungsverzeichnis}  
+\makenomenclature
+\InputIfExists{./Verzeichnisse/Symbolverzeichnis.tex}
+\InputIfExists{./Verzeichnisse/Glossar.tex}
 
-\finishHSCdocument
+\begin{document}
+  \maketitle
+  \frontmatter
+  % "Sperrmerk" or "Blocking Notice"
+  \IfExists{./Sektionen/Vermerk.tex}{\thispagestyle{empty}\input{Sektionen/Vermerk}}
+  % "Zusammenfassung" or "Abstract"
+  \IfExists{./Sektionen/Abstract.tex}{\begin{abstract}\input{./Sektionen/Abstract}\end{abstract}}
+  \tableofcontents  
+  \listoffigures
+  \listoftables
+  \lstlistoflistings
+  \listofsymbols
+  \listofacronyms  
+
+  \mainmatter
+  \input{Sektionen/Einfuehrung}
+
+  \backmatter
+
+  % "Danksagung" or "Acknowledgement"
+  \IfExists{./Sektionen/Danksagung.tex}{\begin{acknowledgement}\input{./Sektionen/Danksagung}\end{acknowledgement}}
+  
+  \printfeifglossary   
+  \printfeifbibliography
+  \bibliography{Verzeichnisse/Literaturverzeichnis.bib}
+  \MakeDeclarationOfHonor
+\end{document}
