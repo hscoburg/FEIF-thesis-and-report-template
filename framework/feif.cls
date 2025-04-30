@@ -398,7 +398,7 @@
             \huge{\FEIFAuthorsName}
             \vspace{2cm}
             
-            \Large{\ifgerman{Abgabe des Arbeit:}{Submission date:} \FEIFSubmissionDate}
+            \Large{\ifgerman{Abgabe der Arbeit:}{Submission date:} \FEIFSubmissionDate}
 
             \Large{\ifgerman{Betreut durch:}{Advisor: }}
 
