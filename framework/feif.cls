@@ -475,6 +475,7 @@
 \renewcommand{\listoffigures}
 {
     \iftotalfigures
+    \clearpage
         \phantomsection
         \addcontentsline{toc}{section}{\listfigurename}
         \oldlistoffigures
@@ -486,6 +487,7 @@
 \renewcommand{\listoftables}
 {
     \iftotaltables
+    \clearpage
         \phantomsection
         \addcontentsline{toc}{section}{\listtablename}
         \oldlistoftables
