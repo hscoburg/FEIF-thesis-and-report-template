@@ -1,3 +1,6 @@
+> [!WARNING]
+> The official repository has been moved to [Codeberg](https://codeberg.org). The repository on GitHub is not longer supported and has now been archived. The repository on Codeberg can now be found [here](https://codeberg.org/Hochschule-Coburg/FEIF-thesis-and-report-template).
+
 # Document Template HS Coburg
 
 This repository is based on the [student-maintained and improved version](https://github.com/btoschek/hsc-template) of the outdated FEIF LaTeX document template.
